@@ -6,7 +6,7 @@ settings:
 
 dependencies:
   clsx:
-    specifier: ^2.0.0
+    specifier: ^2.1.1
     version: 2.1.1
   lucide-react:
     specifier: ^0.376.0
@@ -24,7 +24,7 @@ dependencies:
     specifier: ^4.12.0
     version: 4.12.0(react@18.3.1)
   tailwind-merge:
-    specifier: ^2.1.0
+    specifier: ^2.3.0
     version: 2.3.0
   zod:
     specifier: ^3.22.4
@@ -1988,6 +1988,7 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     optional: true
 
@@ -1996,6 +1997,7 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     optional: true
 
@@ -2004,6 +2006,7 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     optional: true
 
@@ -2012,6 +2015,7 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     optional: true
 
