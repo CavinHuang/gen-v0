@@ -20,11 +20,13 @@ import { Chat } from '@/components/chat';
 
 export default function HomePage() {
   return (
-    <main>
+    <main className='flex h-screen w-full flex-col'>
       <Head>
         <title>Hi</title>
       </Head>
-      <Chat />
+      <div className='flex h-full flex-1 flex-col overflow-hidden bg-muted/40 md:gap-8'>
+        <Chat />
+      </div>
     </main>
   );
 }
