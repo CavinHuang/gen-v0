@@ -2,12 +2,21 @@ import type { Config } from 'tailwindcss';
 import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default {
+  darkMode: 'class',
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
+    fontFamily: {
+      primary: ['Inter', ...defaultTheme.fontFamily.sans],
+      sans: ['"Source Sans 3"', 'sans-serif']
+    },
+    container: {
+      center: true,
+      padding: '2rem',
+      screens: {
+        '2xl': '1400px'
+      }
+    },
     extend: {
-      fontFamily: {
-        primary: ['Inter', ...defaultTheme.fontFamily.sans],
-      },
       colors: {
         primary: {
           // Customize it on globals.css :root
@@ -24,11 +33,21 @@ export default {
           950: 'rgb(var(--tw-color-primary-950) / <alpha-value>)',
         },
         dark: '#222222',
+        border: 'hsl(var(--border))',
+				input: 'hsl(var(--input))',
+				ring: 'hsl(var(--ring))',
+				background: 'hsl(var(--background))',
+				foreground: 'hsl(var(--foreground))',
         muted: {
 					DEFAULT: 'hsl(var(--muted))',
 					foreground: 'hsl(var(--muted-foreground))'
 				},
       },
+      borderRadius: {
+				lg: 'var(--radius)',
+				md: 'calc(var(--radius) - 2px)',
+				sm: 'calc(var(--radius) - 4px)'
+			},
       keyframes: {
         flicker: {
           '0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100%': {
@@ -49,6 +68,10 @@ export default {
             backgroundPosition: '700px 0',
           },
         },
+        'rotate-180': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(180deg)' }
+				}
       },
       animation: {
         flicker: 'flicker 3s linear infinite',
@@ -56,5 +79,5 @@ export default {
       },
     },
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('tailwindcss-animate')],
 } satisfies Config;

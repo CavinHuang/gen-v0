@@ -5,6 +5,7 @@ import * as React from 'react';
 import '@/lib/env';
 
 import { Chat } from '@/components/chat';
+import NavBar from '@/components/NavBar';
 
 /**
  * SVGR Support
@@ -24,6 +25,7 @@ export default function HomePage() {
       <Head>
         <title>Hi</title>
       </Head>
+      <NavBar />
       <Chat />
     </main>
   );
