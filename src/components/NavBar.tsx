@@ -3,9 +3,11 @@ import { ChevronDownIcon } from "lucide-react"
 import { cn } from "@/lib"
 
 import IconButton from "@/components/buttons/IconButton"
+import UserButton from "@/components/useButton"
 
 
 export default function NavBar() {
+
   return (
     <header
       style={{ zIndex: 10_000 }}
@@ -34,7 +36,7 @@ export default function NavBar() {
             aria-label='GitHub'
             rel='noreferrer'
             target='_blank'
-            href='https://github.com/wandb/openui'
+            href='https://github.com'
           >
             <svg
               className='h-4 w-4'
@@ -73,12 +75,7 @@ export default function NavBar() {
           <PlusIcon className='mr-1 h-5 w-5' />
           New UI
         </Button> */}
-        {/* <Avatar className='ml-6 mr-0 hidden rounded-full sm:flex'>
-          <AvatarImage src={avatarURL} />
-          <AvatarFallback>
-            <AvatarIcon className='h-5 w-5' />
-          </AvatarFallback>
-        </Avatar> */}
+        <UserButton />
       </div>
     </header>
   )

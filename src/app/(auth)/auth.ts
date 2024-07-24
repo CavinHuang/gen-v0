@@ -1,3 +1,4 @@
+import { PrismaAdapter } from "@auth/prisma-adapter"
 import { PrismaClient } from "@prisma/client"
 import NextAuth, { AuthOptions, } from "next-auth"
 import Credentials from "next-auth/providers/credentials"
@@ -6,7 +7,7 @@ import Google from "next-auth/providers/google"
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-globalThis.prisma ??= new PrismaClient()
+globalThis.prisma = new PrismaClient()
 
 export const authoOptions:AuthOptions = {
   debug: true,
@@ -31,7 +32,7 @@ export const authoOptions:AuthOptions = {
 export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  // adapter: PrismaAdapter(globalThis.prisma),
+  adapter: PrismaAdapter(globalThis.prisma),
   session: { strategy: "jwt" },
   ...authoOptions,
 })
