@@ -3,7 +3,7 @@ import { ChevronDownIcon } from "lucide-react"
 import { cn } from "@/lib"
 
 import IconButton from "@/components/buttons/IconButton"
-import UserButton from "@/components/useButton"
+import UserButton from "@/components/UserButton"
 
 
 export default function NavBar() {

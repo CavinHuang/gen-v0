@@ -1,5 +1,3 @@
-'use client';
-
 import Head from 'next/head';
 import * as React from 'react';
 import '@/lib/env';
