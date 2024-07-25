@@ -1,21 +1,18 @@
+import Link from "next/link"
 
 import { Button } from "@/components/buttons/Button"
 
-import { signIn,signOut } from "@/app/(auth)/auth"
+import { signOut } from "@/app/(auth)/auth"
 
 export function SignIn({
-  provider,
   ...props
 }: { provider?: string } & React.ComponentPropsWithRef<typeof Button>) {
   return (
-    <form
-      action={async () => {
-        "use server"
-        await signIn(provider)
-      }}
-    >
-      <Button {...props}>Sign In</Button>
-    </form>
+    <Button {...props}>
+      <Link href="/signin">
+        Sign In
+      </Link>
+    </Button>
   )
 }
 
