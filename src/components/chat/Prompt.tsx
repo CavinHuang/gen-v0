@@ -135,7 +135,7 @@ export const Prompt = ({
     <div
       id='llm-input'
       className={cn(
-        `z-0 mx-auto my-4 flex w-full max-w-full justify-center rounded-full bg-muted px-4 py-3 align-middle transition-all md:w-full lg:w-10/12`,
+        `z-0 mx-auto my-20 flex w-full max-w-full justify-center rounded-full bg-muted px-4 py-3 align-middle transition-all md:w-full lg:w-10/12`,
         isFocused ? 'border-2 border-primary bg-white dark:bg-muted' : ''
       )}
     >

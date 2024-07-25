@@ -1,8 +1,11 @@
+import { GearIcon } from "@radix-ui/react-icons"
 import { ChevronDownIcon } from "lucide-react"
 
 import { cn } from "@/lib"
 
+import { Button } from "@/components/buttons/Button"
 import IconButton from "@/components/buttons/IconButton"
+import Settings from "@/components/Setting"
 import UserButton from "@/components/UserButton"
 
 
@@ -56,7 +59,7 @@ export default function NavBar() {
           className='mr-2 h-8 w-8 rounded-sm hover:bg-muted/80'
         />
 
-        {/* <Settings
+        <Settings
           trigger={
             <Button
               className='mr-2 h-8 w-8 rounded-sm hover:bg-muted/80'
@@ -66,7 +69,7 @@ export default function NavBar() {
               <GearIcon className='h-4 w-4' />
             </Button>
           }
-        /> */}
+        />
 
         {/* <Button
           onClick={() => navigate('/ai/new')}
