@@ -15,7 +15,9 @@ import { Dialog,DialogContent,DialogDescription,DialogHeader,DialogTitle,DialogT
 import { Form,FormControl,FormDescription,FormField,FormItem,FormLabel,FormMessage } from "@/components/ui/form";
 import { HoverCard,HoverCardContent,HoverCardTrigger } from "@/components/ui/hover-card"
 import { Input } from "@/components/ui/input";
+import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
+import { Textarea } from "@/components/ui/Textarea";
 function slugToNiceName(slug?: string,float = true) {
   if (slug) {
     const niceSlug = slug.split('/').slice(1,-1).join('')
@@ -97,6 +99,7 @@ const Settings = ({ trigger }: { trigger: JSX.Element }) => {
         <div className='grid gap-4 py-4'>
           <Form {...form}>
             <form className="space-y-8">
+              {/* OpenAi */}
               <Collapsible open={open} onOpenChange={setOpen} className="border rounded-lg">
                 <CollapsibleTrigger asChild>
                   <div className="flex items-center py-2 px-2 bg-gray-100">
@@ -180,6 +183,7 @@ const Settings = ({ trigger }: { trigger: JSX.Element }) => {
                 </CollapsibleContent>
               </Collapsible>
 
+              {/* Ollama */}
               <Collapsible open={open} onOpenChange={setOpen} className="border rounded-lg">
                 <CollapsibleTrigger asChild>
                   <div className="flex items-center py-2 px-2 bg-gray-100">
@@ -262,6 +266,60 @@ const Settings = ({ trigger }: { trigger: JSX.Element }) => {
                   />
                 </CollapsibleContent>
               </Collapsible>
+
+              {/* 支持视觉 */}
+              <FormField
+                control={form.control}
+                name="apiHostProxy"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>是否支持视觉</FormLabel>
+                    <FormControl>
+                      <Switch defaultValue={field.value} onChange={field.onChange} />
+                    </FormControl>
+                    <FormDescription>
+                      所选择的模型是否支持视觉，可以覆盖全局设置
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* 全局的系统提示词设置 */}
+              <FormField
+                control={form.control}
+                name="apiHostProxy"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>全局的系统提示词设置</FormLabel>
+                    <FormControl>
+                      <Textarea defaultValue={field.value} onChange={field.onChange} placeholder="输出系统提示词" />
+                    </FormControl>
+                    <FormDescription>
+                      符合OpenAI API的代理地址
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* 温度 */}
+              <FormField
+                control={form.control}
+                name="apiHostProxy"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>全局的系统提示词设置</FormLabel>
+                    <FormControl>
+                      <Slider defaultValue={[5]} max={1} step={0.1} onChange={field.onChange} />
+                    </FormControl>
+                    <FormDescription>
+                      模型温度，值越大，生成的内容越有创意
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <Button variant="outline" type="submit">
                 Submit
               </Button>
