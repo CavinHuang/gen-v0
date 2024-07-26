@@ -5,11 +5,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GitHub from "next-auth/providers/github"
 import Google from "next-auth/providers/google"
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-globalThis.prisma = new PrismaClient()
-
-
+const prisma = new PrismaClient()
 
 export const authoOptions:NextAuthConfig = {
   debug: true,
@@ -43,11 +39,8 @@ export const authoOptions:NextAuthConfig = {
   ].filter(Boolean) as NextAuthConfig["providers"],
 }
 
-
 export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  adapter: PrismaAdapter(globalThis.prisma),
+  adapter: PrismaAdapter(prisma),
   session: { strategy: "jwt" },
   pages: {
     signIn: "/signin",

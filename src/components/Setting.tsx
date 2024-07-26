@@ -17,7 +17,7 @@ import { HoverCard,HoverCardContent,HoverCardTrigger } from "@/components/ui/hov
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
-import { Textarea } from "@/components/ui/Textarea";
+import { Textarea } from "@/components/ui/textarea";
 function slugToNiceName(slug?: string,float = true) {
   if (slug) {
     const niceSlug = slug.split('/').slice(1,-1).join('')
