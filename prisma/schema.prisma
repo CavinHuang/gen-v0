@@ -9,8 +9,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:genv0.db"
+  provider = "mysql"
+  url      = env("DB_HOST")
 }
 
 model Account {
@@ -48,6 +48,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   Authenticator Authenticator[]
+  UserSettings  UserSettings?
 }
 
 model VerificationToken {
@@ -68,6 +69,22 @@ model Authenticator {
   credentialDeviceType String
   credentialBackedUp   Boolean
   transports           String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model UserSettings {
+  id     String @id @default(cuid()) @unique
+  userId String @unique
+  theme  String
+  locale String
+  openAiDisabled Boolean
+  openAiApiKey String?
+  openHostProxy String?
+  openAiSelectedModels Json
+  ollamaDisabled Boolean
+  ollamaHost String?
+  ollamaSelectedModels Json
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

@@ -4,8 +4,9 @@ import { ChangeEvent,useCallback,useEffect,useRef,useState } from 'react';
 import { cn,EXAMPLES } from '@/lib';
 
 import IconButton from '@/components/buttons/IconButton';
+import { Textarea } from '@/components/ui/textarea';
+import { Tooltip,TooltipContent,TooltipTrigger } from '@/components/ui/tooltip';
 
-import { Textarea,Tooltip,TooltipContent,TooltipTrigger } from '../ui';
 
 export const Prompt = ({
   isEditing,

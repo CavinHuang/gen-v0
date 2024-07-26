@@ -89,7 +89,7 @@ const Settings = ({ trigger }: { trigger: JSX.Element }) => {
         </HoverCardContent>
       </HoverCard>
 
-      <DialogContent className='max-w-3xl'>
+      <DialogContent className='max-w-3xl max-h-[80%] overflow-auto'>
         <DialogHeader>
           <DialogTitle>设置</DialogTitle>
           <DialogDescription>
@@ -309,9 +309,9 @@ const Settings = ({ trigger }: { trigger: JSX.Element }) => {
                 name="apiHostProxy"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>全局的系统提示词设置</FormLabel>
+                    <FormLabel>随机性</FormLabel>
                     <FormControl>
-                      <Slider defaultValue={[5]} max={1} step={0.1} onChange={field.onChange} />
+                      <Slider defaultValue={[0.6]} max={1} onChange={field.onChange} />
                     </FormControl>
                     <FormDescription>
                       模型温度，值越大，生成的内容越有创意
