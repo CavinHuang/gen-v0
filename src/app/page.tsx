@@ -1,10 +1,9 @@
-'use client';
-
 import Head from 'next/head';
 import * as React from 'react';
 import '@/lib/env';
 
 import { Chat } from '@/components/chat';
+import NavBar from '@/components/NavBar';
 
 /**
  * SVGR Support
@@ -20,13 +19,12 @@ import { Chat } from '@/components/chat';
 
 export default function HomePage() {
   return (
-    <main className='flex h-screen w-full flex-col'>
+    <main className='flex flex-col h-svh'>
       <Head>
         <title>Hi</title>
       </Head>
-      <div className='flex h-full flex-1 flex-col overflow-hidden bg-muted/40 md:gap-8'>
-        <Chat />
-      </div>
+      <NavBar />
+      <Chat />
     </main>
   );
 }
