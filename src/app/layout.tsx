@@ -5,6 +5,8 @@ import '@/styles/globals.css';
 // !STARTERCONF This is for demo purposes, remove @/styles/colors.css import immediately
 import '@/styles/colors.css';
 
+import { Toaster } from "@/components/ui/toaster";
+
 import { siteConfig } from '@/constant/config';
 
 // !STARTERCONF Change these default meta
@@ -58,6 +60,7 @@ export default function RootLayout({
     <html>
       <body>
         {children}
+        <Toaster />
       </body>
     </html>
   );

@@ -8,9 +8,11 @@ import IconButton from "@/components/buttons/IconButton"
 import Settings from "@/components/Setting"
 import UserButton from "@/components/UserButton"
 
+import { auth } from "@/app/(auth)/auth"
 
-export default function NavBar() {
 
+export default async function NavBar() {
+  const session = await auth();
   return (
     <header
       style={{ zIndex: 10_000 }}
@@ -59,7 +61,7 @@ export default function NavBar() {
           className='mr-2 h-8 w-8 rounded-sm hover:bg-muted/80'
         />
 
-        <Settings
+        {session?.user ? <Settings
           trigger={
             <Button
               className='mr-2 h-8 w-8 rounded-sm hover:bg-muted/80'
@@ -69,7 +71,7 @@ export default function NavBar() {
               <GearIcon className='h-4 w-4' />
             </Button>
           }
-        />
+        /> : null}
 
         {/* <Button
           onClick={() => navigate('/ai/new')}
