@@ -1,4 +1,9 @@
+"use client"
+
 import { zodResolver } from "@hookform/resolvers/zod";
+import { LoaderCircle } from "lucide-react";
+import { useRouter } from 'next/navigation'
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -24,6 +29,9 @@ export type LoginFormSchemaType = z.infer<typeof loginFormSchema>;
 export const Login = () => {
 
   const { toast } = useToast();
+  const router = useRouter();
+
+  const [loading,setLoading] = useState(false)
 
   const form = useForm<LoginFormSchemaType>({
     resolver: zodResolver(loginFormSchema),
@@ -34,20 +42,33 @@ export const Login = () => {
   })
 
   async function onSubmit(values: LoginFormSchemaType) {
-    const result = await loginOrRegister(values);
+    setLoading(true);
+    const { isLogin,error } = await loginOrRegister(values);
 
-    if (result?.error) {
+    if (error) {
       toast({
-        title: '登录失败',
-        description: result.error,
+        title: isLogin ? '登录失败' : '注册失败,请重试～',
+        description: error,
         variant: 'destructive',
       });
+    } else {
+      if (isLogin) {
+        router.push('/');
+        toast({
+          title: '登录成功',
+          description: '欢迎回来',
+          variant: 'success',
+        })
+      } else {
+        router.push('/signin/result');
+      }
     }
+    setLoading(false);
   }
 
   return (
     <Form {...form}>
-      <div>
+      <div className="flex justify-center">
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="w-[420px]"
@@ -76,8 +97,9 @@ export const Login = () => {
             )}
           />
           <div className='flex justify-between mt-[20px]'>
-            <Button size='lg' className='w-full' type="submit">
-              登录/注册
+            <Button size='lg' disabled={loading} className='w-full' type="submit">
+              {loading ? <LoaderCircle className="animate-spin mr-2" /> : null}
+              {loading ? '请稍后...' : '登录/注册'}
             </Button>
           </div>
         </form>

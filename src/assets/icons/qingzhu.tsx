@@ -1,7 +1,5 @@
 'use client'
 
-import Icon from "@ant-design/icons";
-import type { CustomIconComponentProps } from "@ant-design/icons/lib/components/Icon";
 
 const SVGQingzhu = () => (
   <svg
@@ -33,6 +31,6 @@ const SVGQingzhu = () => (
   </svg>
 );
 
-export const IconQingzhu = (props: Partial<CustomIconComponentProps>) => (
-  <Icon component={SVGQingzhu} {...props} />
+export const IconQingzhu = (props: any) => (
+  <SVGQingzhu />
 );

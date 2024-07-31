@@ -87,6 +87,9 @@ model UserSettings {
   ollamaDisabled Boolean
   ollamaHost String?
   ollamaSelectedModels Json
+  supportVisual Boolean
+  systemPrompt String @db.LongText
+  temperature Float? @default(0.6)
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

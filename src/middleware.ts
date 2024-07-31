@@ -1,21 +1,22 @@
+import NextAuth from 'next-auth';
 
-import { auth } from "@/app/(auth)/auth"
-// Or like this if you need to do something here.
-// export default auth((req) => {
-//   console.log(req.auth) //  { session: { user: { ... } } }
-// })
+const {auth} = NextAuth({
+  providers: [],
+});
 
-// export async function middleware(request: NextRequest) {
-//   // 获取session
-//   const session = await auth()
+export default auth((req) => {
+  const isLoggedIn = !!req.auth?.user;
 
-//   console.log('哈哈就是我=', session)
-//   return NextResponse.redirect(new URL('/', request.url))
-// }
+  // 没有登录，并且访问的页面不是以auth开头的，则重定向到登录页
+  if (!isLoggedIn && !req.nextUrl.pathname.startsWith('/signin')) {
+    return Response.redirect(new URL('/signin', req.nextUrl));
+  } else if (isLoggedIn && req.nextUrl.pathname.startsWith('/signin')) {
+    // 已经登录并且访问的页面是以auth开头的，则重定向到首页，不需要重新登录了
+    return Response.redirect(new URL('/', req.nextUrl));
+  }
+});
 
-export const middleware = auth
-
-// Read more: https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
+// 排除掉一些接口和静态资源
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
-}
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+};
