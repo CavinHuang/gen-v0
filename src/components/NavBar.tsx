@@ -1,3 +1,4 @@
+import { UserSettings } from "@prisma/client"
 import { GearIcon } from "@radix-ui/react-icons"
 import { ChevronDownIcon } from "lucide-react"
 
@@ -10,8 +11,11 @@ import UserButton from "@/components/UserButton"
 
 import { auth } from "@/app/(auth)/auth"
 
+interface IProps {
+  settings: UserSettings | null
+}
 
-export default async function NavBar() {
+export default async function NavBar({ settings }: IProps) {
   const session = await auth();
   return (
     <header
@@ -61,7 +65,7 @@ export default async function NavBar() {
           className='mr-2 h-8 w-8 rounded-sm hover:bg-muted/80'
         />
 
-        {session?.user ? <Settings
+        {session?.user ? <Settings settings={settings}
           trigger={
             <Button
               className='mr-2 h-8 w-8 rounded-sm hover:bg-muted/80'

@@ -82,7 +82,7 @@ model UserSettings {
   locale String
   openAiDisabled Boolean
   openAiApiKey String?
-  openHostProxy String?
+  openAiHostProxy String?
   openAiSelectedModels Json
   ollamaDisabled Boolean
   ollamaHost String?

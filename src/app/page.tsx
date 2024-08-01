@@ -5,6 +5,8 @@ import '@/lib/env';
 import { Chat } from '@/components/chat';
 import NavBar from '@/components/NavBar';
 
+import { getUserSettings } from '@/app/settings/action';
+
 /**
  * SVGR Support
  * Caveat: No React Props Type.
@@ -17,13 +19,14 @@ import NavBar from '@/components/NavBar';
 // Before you begin editing, follow all comments with `STARTERCONF`,
 // to customize the default configuration.
 
-export default function HomePage() {
+export default async function HomePage() {
+  const settings = await getUserSettings();
   return (
     <main className='flex flex-col h-svh'>
       <Head>
         <title>Hi</title>
       </Head>
-      <NavBar />
+      <NavBar settings={settings} />
       <Chat />
     </main>
   );
