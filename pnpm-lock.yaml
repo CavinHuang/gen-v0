@@ -98,6 +98,9 @@ dependencies:
   nodemailer:
     specifier: ^6.9.14
     version: 6.9.14
+  ollama:
+    specifier: ^0.5.6
+    version: 0.5.6
   openai:
     specifier: ^4.53.0
     version: 4.53.2
@@ -119,6 +122,9 @@ dependencies:
   tailwindcss-animate:
     specifier: ^1.0.7
     version: 1.0.7(tailwindcss@3.4.7)
+  utility-types:
+    specifier: ^3.11.0
+    version: 3.11.0
   uuid:
     specifier: ^10.0.0
     version: 10.0.0
@@ -7933,6 +7939,12 @@ packages:
       es-object-atoms: 1.0.0
     dev: true
 
+  /ollama@0.5.6:
+    resolution: {integrity: sha512-4BySAMt96+OCt4emL6DE78UBCGqC7GvteM9LRCd6WwJyefn0x9w2BrcUcLm9nJ9bYpRsmkhf0Au18Q5MhsA14w==}
+    dependencies:
+      whatwg-fetch: 3.6.20
+    dev: false
+
   /once@1.4.0:
     resolution: {integrity: sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==}
     dependencies:
@@ -9511,6 +9523,11 @@ packages:
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
+  /utility-types@3.11.0:
+    resolution: {integrity: sha512-6Z7Ma2aVEWisaL6TvBCy7P8rm2LQoPv6dJ7ecIaIixHcwfbJ0x7mWdbcwlIM5IGQxPZSFYeqRCqlOOeKoJYMkw==}
+    engines: {node: '>= 4'}
+    dev: false
+
   /uuid@10.0.0:
     resolution: {integrity: sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ==}
     hasBin: true
@@ -9580,6 +9597,10 @@ packages:
     dependencies:
       iconv-lite: 0.4.24
     dev: true
+
+  /whatwg-fetch@3.6.20:
+    resolution: {integrity: sha512-EqhiFU6daOA8kpjOWTL0olhVOF3i7OrFzSYiGsEMB8GcXS+RrzauAERX65xMeNWVqxA6HXH2m69Z9LaKKdisfg==}
+    dev: false
 
   /whatwg-mimetype@2.3.0:
     resolution: {integrity: sha512-M4yMwr6mAnQz76TbJm914+gPpB/nCwvZbJU28cUD6dR004SAxDLOOSUaB1JDRqLtaOV/vi0IC5lEAGFgrjGv/g==}
