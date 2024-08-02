@@ -1,10 +1,12 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { UserSettings } from '@prisma/client';
-import { ChevronUp,ImageIcon,RefreshCcwDot } from 'lucide-react';
+import { ChevronUp,ImageIcon,Loader2,RefreshCcwDot } from 'lucide-react';
 import { Cat,Dog,Fish,Rabbit,Turtle } from 'lucide-react';
+import { ListResponse } from 'ollama/browser';
 import { useCallback,useEffect,useState } from 'react';
 import { useForm } from 'react-hook-form';
+import useSWR from 'swr';
 import { z } from 'zod';
 
 import { cn,knownImageModels } from '@/lib';
@@ -47,6 +49,7 @@ import { useToast } from '@/components/ui/use-toast';
 
 import { updateUserSettings } from '@/app/settings/action';
 import { genv0OpenAiGetChatModels } from '@/services/GenV0Openai';
+import { ollamaService } from '@/services/ollama';
 import runtimeService from '@/services/Runtime';
 function slugToNiceName(slug?: string,float = true) {
   if (slug) {
@@ -250,6 +253,41 @@ const Settings = ({
       });
     }
   }
+
+  const { data,error,isLoading,mutate } = useSWR<ListResponse>(
+    'ollama.list',
+    async () => {
+      const ollamaHost = form.getValues('ollamaHost');
+      return await ollamaService.getModels(ollamaHost);
+    },
+    {
+      revalidateOnFocus: false,
+      revalidateOnMount: false,
+      revalidateOnReconnect: false,
+    },
+  );
+
+  const checkConnection = () => {
+    mutate().catch(() => {
+      toast({
+        variant: 'destructive',
+        title: 'ollama连通测试',
+        description: '连通失败',
+      });
+    });
+  };
+
+  const handleGetOllamaModels = useCallback(async () => {
+    const ollamaHost = form.getValues('ollamaHost');
+    if (!ollamaHost) {
+      toast({
+        variant: 'destructive',
+        description: '请输入ollama地址',
+      });
+      return;
+    }
+    mutate();
+  },[form,toast,mutate]);
   return (
     <Dialog>
       <HoverCard>
@@ -511,7 +549,7 @@ const Settings = ({
                             defaultValue={field.value}
                             placeholder='Select ollama models'
                             variant='inverted'
-                            maxCount={3}
+                            maxCount={1}
                           />
                         </FormControl>
                         <FormDescription className='flex items-center'>
@@ -523,6 +561,7 @@ const Settings = ({
                               variant='ghost'
                               size='sm'
                               className='px-2 py-2'
+                              onClick={handleGetOllamaModels}
                             >
                               <RefreshCcwDot width={16} height={16} />
                             </Button>
@@ -533,7 +572,9 @@ const Settings = ({
                             className='ml-5'
                             variant='outline'
                             size='sm'
+                            onClick={checkConnection}
                           >
+                            {isLoading ? <Loader2 className="animate-spin" /> : null}
                             测试连通
                           </Button>
                         </FormDescription>

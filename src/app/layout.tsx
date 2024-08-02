@@ -8,7 +8,6 @@ import '@/styles/colors.css';
 import { Toaster } from "@/components/ui/toaster";
 
 import { siteConfig } from '@/constant/config';
-
 // !STARTERCONF Change these default meta
 // !STARTERCONF Look at @/constant/config to change them
 export const metadata: Metadata = {
